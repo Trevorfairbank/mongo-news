@@ -1,6 +1,5 @@
 const express = require("express");
 const logger = require("morgan");
-const mongojs = require("mongojs");
 const mongoose = require("mongoose");
 const exphbs = require("express-handlebars");
 
@@ -41,26 +40,21 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 // Main route (Show home page)
 app.get("/", function(req, res) {
     db.Article.find({}, function(err, data) {
-        var articleData = {
-          article: data
-        };
-        console.log(articleData);
-    res.render("./home", articleData);
+
+    res.render("./home", {data:data});
   });
-  
+
 });
 // GET Route (Show saved page)
 app.get("/saved", function(req, res) {
     db.Article.find({}, function(err, data) {
-        var articleData = {
-          article: data
-        };
-        console.log(articleData);
-    res.render("./saved", articleData);
+
+    res.render("./saved", {data:data});
+
   });
 });
 
-// A GET route for scraping the economist website
+// A GET route for scraping bored panda website
 app.get("/scrape", function(req, res) {
     // First, we grab the body of the html with axios
     axios.get("https://www.boredpanda.com/").then(function(response) {
@@ -92,6 +86,17 @@ app.get("/scrape", function(req, res) {
       res.send("Scrape Complete");
     });
   });
+
+//Route for clearing all articles from the db
+app.put("/clear", function(req, res) {
+    db.Article.deleteMany({})
+        .then(function(dbArticle){
+           res.render("home", {data: dbArticle})
+        })
+        .catch(function(err) {
+            res.json(err);
+        })
+});
 
 // Route for getting all Articles from the db
 app.get("/articles", function(req, res) {
