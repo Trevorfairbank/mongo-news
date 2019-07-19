@@ -9,9 +9,29 @@
   </div>
 </div>
 <div class="container-fluid article-container">
-  <div class="alert alert-warning text-center">
-    <h4>Uh Oh. Looks like we don't have any saved articles.</h4>
+  {{#each data}}
+  <div id="#savedArticles" class="col-md-8 mx-auto">
+    <div class="card">
+      <div class="card-header text-center">
+        <h4>
+          <a href={{link}}>{{title}}</a></h4>
+        <div class="card-body text-center">
+          <p>{{summary}}</p>
+          <button class="btn btn-success addNote" data-id={{_id}}>View/Make Note</button>
+          <button data-id={{_id}} id="saveArticle" class="btn btn-danger">Remove Article</button>
+        </div>
+      </div>
+    </div>
+    <br>
   </div>
+  {{/each}}
+
+ {{#unless data}}
+  <div class='alert alert-warning text-center'>
+    <h4>Uh Oh. Looks like we don't have any new articles.</h4>
+  </div>
+  {{/unless}}
+
   <div class="card">
     <div class="card-header text-center">
       <h3>Would You Like to Browse Available Articles?</h3>

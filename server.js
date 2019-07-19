@@ -39,7 +39,7 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 // Main route (Show home page)
 app.get("/", function(req, res) {
-    db.Article.find({}, function(err, data) {
+    db.Article.find({saved:false}, function(err, data) {
 
     res.render("./home", {data:data});
   });
@@ -47,7 +47,7 @@ app.get("/", function(req, res) {
 });
 // GET Route (Show saved page)
 app.get("/saved", function(req, res) {
-    db.Article.find({}, function(err, data) {
+    db.Article.find({saved:true}, function(err, data) {
 
     res.render("./saved", {data:data});
 
@@ -112,22 +112,34 @@ app.get("/articles", function(req, res) {
       });
   });
   
-  // Route for grabbing a specific Article by id, populate it with it's note
-  app.get("/articles/:id", function(req, res) {
-    // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
-    db.Article.findOne({ _id: req.params.id })
-      // ..and populate all of the notes associated with it
-      .populate("note")
-      .then(function(dbArticle) {
-        // If we were able to successfully find an Article with the given id, send it back to the client
+// Save an article
+app.post("/articles/save/:id", function(req, res) {
+    // Use the article id to find and update its saved boolean
+    db.Article.findOneAndUpdate({ "_id": req.params.id }, { "saved": true})
+    // Execute the above query
+    .then(function(dbArticle) {
+
         res.json(dbArticle);
-      })
-      .catch(function(err) {
-        // If an error occurred, send it to the client
+    }).catch(function(err) {
+
         res.json(err);
-      });
-  });
-  
+    })
+});
+
+// Remove an article
+app.post("/articles/remove/:id", function(req, res) {
+    // Use the article id to find and update its saved boolean
+    db.Article.findOneAndUpdate({ "_id": req.params.id }, { "saved": false})
+    // Execute the above query
+    .then(function(dbArticle) {
+
+        res.json(dbArticle);
+    }).catch(function(err) {
+
+        res.json(err);
+    })
+});
+
   // Route for saving/updating an Article's associated Note
   app.post("/articles/:id", function(req, res) {
     // Create a new note and pass the req.body to the entry
