@@ -20,6 +20,7 @@
           <div class="card-body text-center">
             <p>{{summary}}</p>
             <button data-id={{_id}} id="saveArticle" class="btn btn-danger">Save Article</button>
+            <p>{{views}}</p>
           </div>
         </div>
       </div>
@@ -28,7 +29,8 @@
     <div id="images" class="col-md-3">
       <div class="card image-card">
         <div class=" card-header text-center">
-          <img class="image-size" src="{{image}}" alt="boredPanda" />
+          <img class="image-size" src={{image}} alt="BORED PANDA" />
+          <p>{{views}}</p>
         </div>
       </div>
     </div>
