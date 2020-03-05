@@ -10,30 +10,39 @@
 </div>
 <div class="container-fluid article-container">
   {{#each data}}
-  <div id="#savedArticles" class="col-md-8 mx-auto">
-    <div class="card">
-      <div class="card-header text-center">
-        <h4>
-          <a href={{link}}>{{title}}</a></h4>
-        <div class="card-body text-center">
-          <p>{{summary}}</p>
-          <button class="btn btn-success addNote" data-id={{_id}}>View/Make Note</button>
-          <button data-id={{_id}} id="removeArticle" class="btn btn-danger">Remove Article</button>
+  <div class="row mx-auto">
+    <div id="#savedArticles" class="col-md-7">
+      <div class="card">
+        <div class="card-header text-center">
+          <h4>
+            <a href={{link}}>{{title}}</a></h4>
+          <div class="card-body text-center">
+            <p>{{summary}}</p>
+            {{!-- <button class="btn btn-success addNote" data-id={{_id}}>View/Make Note</button> --}}
+            <button data-id={{_id}} id="removeArticle" class="btn btn-danger">Remove Article</button>
+          </div>
+        </div>
+      </div>
+      <br>
+    </div>
+    <div id="images" class="col-md-3">
+      <div class="card image-card">
+        <div class="card-header text-center">
+          <img class="image-size" src={{image}} alt="boredPanda" />
         </div>
       </div>
     </div>
-    <br>
   </div>
   {{/each}}
 
- {{#unless data}}
+  {{#unless data}}
   <div class='alert alert-warning text-center'>
     <h4>Uh Oh. Looks like we don't have any new articles.</h4>
   </div>
   {{/unless}}
 
   <div class="card">
-    <div class="card-header text-center">
+    <div class="card-header-2 text-center">
       <h3>Would You Like to Browse Available Articles?</h3>
     </div>
     <div class="card-body text-center">

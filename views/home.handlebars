@@ -11,18 +11,27 @@
 <div class="container-fluid article-container">
   {{!-- Insert Stuff here --}}
   {{#each data}}
-  <div id="#articles" class="col-md-8 mx-auto">
-    <div class="card">
-      <div class="card-header text-center">
-        <h4>
-          <a href={{link}}>{{title}}</a></h4>
-        <div class="card-body text-center">
-          <p>{{summary}}</p>
-          <button data-id={{_id}} id="saveArticle" class="btn btn-danger">Save Article</button>
+  <div class="row mx-auto">
+    <div id="#articles" class="col-md-7">
+      <div class="card">
+        <div class="card-header text-center">
+          <h4>
+            <a href={{link}}>{{title}}</a></h4>
+          <div class="card-body text-center">
+            <p>{{summary}}</p>
+            <button data-id={{_id}} id="saveArticle" class="btn btn-danger">Save Article</button>
+          </div>
+        </div>
+      </div>
+      <br>
+    </div>
+    <div id="images" class="col-md-3">
+      <div class="card image-card">
+        <div class=" card-header text-center">
+          <img class="image-size" src={{image}} alt="boredPanda" />
         </div>
       </div>
     </div>
-    <br>
   </div>
   {{/each}}
 
@@ -31,8 +40,9 @@
     <h4>Uh Oh. Looks like we don't have any new articles.</h4>
   </div>
   {{/unless}}
+
   <div class="card">
-    <div class="card-header text-center">
+    <div class="card-header-2 text-center">
       <h3>What Would You Like To Do?</h3>
     </div>
     <div class="card-body text-center">

@@ -1,0 +1,62 @@
+.btn-danger {
+  padding: 10px;
+  margin: 10px;
+  color: #fff;
+}
+
+.nav-item {
+  color: #fff;
+}
+
+.jumbotron {
+  background-image: url(./photos/panda1_cover.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: left;
+  height: 50vh;
+  border-radius: 0;
+}
+.caption {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding-top: 80px;
+}
+.caption h1 {
+  color: #2095f3;
+  font-size: 50px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.caption p {
+  color: #fff;
+  font-size: 20px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.card-header {
+  height: 280px;
+}
+
+.image-card {
+  position: relative;
+  width: 340px;
+  margin-bottom: 40px;
+}
+.image-size {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  height: 80%;
+  width: 100%;
+}
+
+.btn-success {
+  padding: 10px;
+  margin: 10px;
+  color: #fff;
+}
+
+.card-header-2 {
+  padding-top: 20px;
+}
